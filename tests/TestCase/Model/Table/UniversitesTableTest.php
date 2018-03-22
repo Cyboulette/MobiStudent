@@ -26,15 +26,8 @@ class UniversitesTableTest extends TestCase
     public $fixtures = [
         'app.universites',
         'app.diplomes',
-        'app.contrats',
-        'app.demande_mobilites',
-        'app.etudiants',
         'app.programmes',
-        'app.universites_programmes',
-        'app.demande_financieres',
-        'app.cours',
-        'app.cours_contrats',
-        'app.cours_diplomes'
+        'app.universites_programmes'
     ];
 
     /**

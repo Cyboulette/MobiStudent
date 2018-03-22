@@ -48,7 +48,7 @@ class DemandeMobilitesFixture extends TestFixture
             'id' => 1,
             'etudiant_id' => 1,
             'diplome_id' => 1,
-            'date_depot' => '2018-03-18 20:08:51',
+            'date_depot' => '2018-03-22 13:03:26',
             'etat' => 'Lorem ipsum dolor sit amet'
         ],
     ];

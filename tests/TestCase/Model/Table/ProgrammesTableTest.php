@@ -28,13 +28,13 @@ class ProgrammesTableTest extends TestCase
         'app.contrats',
         'app.diplomes',
         'app.universites',
+        'app.universites_programmes',
         'app.demande_mobilites',
         'app.etudiants',
         'app.cours',
         'app.cours_contrats',
         'app.cours_diplomes',
-        'app.demande_financieres',
-        'app.universites_programmes'
+        'app.demande_financieres'
     ];
 
     /**

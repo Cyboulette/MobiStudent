@@ -18,13 +18,12 @@ class DiplomesControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.diplomes',
         'app.universites',
+        'app.programmes',
+        'app.universites_programmes',
         'app.contrats',
         'app.demande_mobilites',
         'app.etudiants',
-        'app.programmes',
-        'app.demande_financieres',
         'app.cours',
-        'app.cours_contrats',
         'app.cours_diplomes'
     ];
 

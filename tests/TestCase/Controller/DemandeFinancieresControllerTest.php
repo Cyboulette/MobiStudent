@@ -20,12 +20,13 @@ class DemandeFinancieresControllerTest extends IntegrationTestCase
         'app.contrats',
         'app.diplomes',
         'app.universites',
+        'app.programmes',
+        'app.universites_programmes',
         'app.demande_mobilites',
         'app.etudiants',
         'app.cours',
         'app.cours_contrats',
-        'app.cours_diplomes',
-        'app.programmes'
+        'app.cours_diplomes'
     ];
 
     /**
