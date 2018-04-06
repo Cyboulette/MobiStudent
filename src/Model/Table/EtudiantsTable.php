@@ -34,7 +34,7 @@ class EtudiantsTable extends Table
         parent::initialize($config);
 
         $this->setTable('etudiants');
-        $this->setDisplayField('id');
+        $this->setDisplayField('num_etudiant');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Diplomes', [

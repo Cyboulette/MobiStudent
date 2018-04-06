@@ -37,7 +37,7 @@ class DiplomesTable extends Table
         parent::initialize($config);
 
         $this->setTable('diplomes');
-        $this->setDisplayField('id');
+        $this->setDisplayField('intitule');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Universites', [

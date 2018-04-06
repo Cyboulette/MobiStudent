@@ -34,7 +34,7 @@ class UniversitesTable extends Table
         parent::initialize($config);
 
         $this->setTable('universites');
-        $this->setDisplayField('id');
+        $this->setDisplayField('nom');
         $this->setPrimaryKey('id');
 
         $this->hasMany('Diplomes', [

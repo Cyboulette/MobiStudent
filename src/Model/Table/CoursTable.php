@@ -35,7 +35,7 @@ class CoursTable extends Table
         parent::initialize($config);
 
         $this->setTable('cours');
-        $this->setDisplayField('id');
+        $this->setDisplayField('libelle');
         $this->setPrimaryKey('id');
 
         $this->belongsToMany('Contrats', [

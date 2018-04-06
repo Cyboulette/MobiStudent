@@ -34,7 +34,7 @@ class ProgrammesTable extends Table
         parent::initialize($config);
 
         $this->setTable('programmes');
-        $this->setDisplayField('id');
+        $this->setDisplayField('intitule');
         $this->setPrimaryKey('id');
 
         $this->hasMany('Contrats', [
