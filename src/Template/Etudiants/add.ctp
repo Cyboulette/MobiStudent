@@ -1,32 +1,17 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Etudiant $etudiant
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Etudiants'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Diplomes'), ['controller' => 'Diplomes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Diplome'), ['controller' => 'Diplomes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Demande Mobilites'), ['controller' => 'DemandeMobilites', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Demande Mobilite'), ['controller' => 'DemandeMobilites', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="etudiants form large-9 medium-8 columns content">
+<?php $this->loadHelper('Form', ['templates' => 'forms/bootstrap_default_form']);?>
+<div class="etudiants form content">
     <?= $this->Form->create($etudiant) ?>
     <fieldset>
-        <legend><?= __('Add Etudiant') ?></legend>
+        <legend><?= __('Ajouter un étudiant') ?></legend>
         <?php
-            echo $this->Form->control('diplome_id', ['options' => $diplomes]);
-            echo $this->Form->control('num_etudiant');
-            echo $this->Form->control('nom');
-            echo $this->Form->control('prenom');
-            echo $this->Form->control('email');
+            echo $this->Form->control('diplome_id', ['options' => $diplomes, 'label' => 'Diplôme actuel', 'required' => true]);
+            echo $this->Form->control('num_etudiant', ['type' => 'number', 'required' => true, 'label' => 'N° étudiant']);
+            echo $this->Form->control('nom', ['required' => true]);
+            echo $this->Form->control('prenom', ['required' => true, 'label' => 'Prénom']);
+            echo $this->Form->control('email', ['required' => true]);
             echo $this->Form->control('cv');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Créer'), ['class' => 'btn btn-success']) ?>
     <?= $this->Form->end() ?>
 </div>

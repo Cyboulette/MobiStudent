@@ -18,7 +18,6 @@ class CoursControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.cours',
         'app.contrats',
-        'app.cours_contrats',
         'app.diplomes',
         'app.universites',
         'app.programmes',
@@ -26,6 +25,8 @@ class CoursControllerTest extends IntegrationTestCase
         'app.demande_mobilites',
         'app.etudiants',
         'app.cours_diplomes',
+        'app.demande_financieres',
+        'app.cours_contrats',
         'app.cours_cours'
     ];
 

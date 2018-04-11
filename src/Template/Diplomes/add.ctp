@@ -1,37 +1,16 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Diplome $diplome
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Diplomes'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Universites'), ['controller' => 'Universites', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Universite'), ['controller' => 'Universites', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Contrats'), ['controller' => 'Contrats', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Contrat'), ['controller' => 'Contrats', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Demande Mobilites'), ['controller' => 'DemandeMobilites', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Demande Mobilite'), ['controller' => 'DemandeMobilites', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Etudiants'), ['controller' => 'Etudiants', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Etudiant'), ['controller' => 'Etudiants', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Cours'), ['controller' => 'Cours', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Cour'), ['controller' => 'Cours', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="diplomes form large-9 medium-8 columns content">
+<?php $this->loadHelper('Form', ['templates' => 'forms/bootstrap_default_form']);?>
+<div class="diplomes form content">
     <?= $this->Form->create($diplome) ?>
     <fieldset>
-        <legend><?= __('Add Diplome') ?></legend>
+        <legend><?= __('Créer un diplôme') ?></legend>
         <?php
-            echo $this->Form->control('universite_id', ['options' => $universites]);
-            echo $this->Form->control('intitule');
+            echo $this->Form->control('universite_id', ['options' => $universites, 'label' => 'Université', 'required' => true]);
+            echo $this->Form->control('intitule', ['label' => 'Intitulé', 'required' => true]);
             echo $this->Form->control('adresse_web');
-            echo $this->Form->control('niveau');
-            echo $this->Form->control('cours._ids', ['options' => $cours]);
+            echo $this->Form->control('niveau', ['required' => true]);
+            echo $this->Form->control('cours._ids', ['options' => $cours, 'label' => 'Cours liés', 'required' => true]);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Créer'), ['class' => 'btn btn-success']) ?>
     <?= $this->Form->end() ?>
 </div>

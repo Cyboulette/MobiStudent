@@ -21,34 +21,59 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+        MobiStudent FRONT
     </title>
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('bootstrap.min.css') ?>
+    <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->script('jquery-3.3.1.min.js') ?>
+    <?= $this->Html->script('bootstrap.min.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
-    </nav>
-    <?= $this->Flash->render() ?>
+    <div class="menu-wrapper">
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
+            <a class="navbar-brand" href="index.jsp">MobiStudent FRONT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <?=$this->Html->link('Diplômes', '/diplomes', ['class' => 'nav-link'])?>
+                    </li>
+                    <li class="nav-item">
+                        <?=$this->Html->link('Cours', '/cours', ['class' => 'nav-link'])?>
+                    </li>
+                    <li class="nav-item">
+                        <?=$this->Html->link('Étudiants', '/etudiants', ['class' => 'nav-link'])?>
+                    </li>
+                    <li class="nav-item">
+                        <?=$this->Html->link('Programmes', '/programmes', ['class' => 'nav-link'])?>
+                    </li>
+                    <li class="nav-item">
+                        <?=$this->Html->link('Contrats', '/contrats', ['class' => 'nav-link'])?>
+                    </li>
+                    <li class="nav-item">
+                        <?=$this->Html->link('Universités', '/universites', ['class' => 'nav-link'])?>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="http://localhost:8080/MobiStudentJSP/" target="_blank" class="nav-link">Administration</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
     <div class="container clearfix">
+        <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
     </div>
     <footer>

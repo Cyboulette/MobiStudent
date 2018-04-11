@@ -45,7 +45,7 @@ class CoursTable extends Table
         ]);
         $this->belongsToMany('Cours', [
             'foreignKey' => 'cour_id',
-            'targetForeignKey' => 'cour_id',
+            'targetForeignKey' => 'linked_cour_id',
             'joinTable' => 'cours_cours'
         ]);
         $this->belongsToMany('Diplomes', [

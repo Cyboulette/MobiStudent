@@ -4,35 +4,22 @@
  * @var \App\Model\Entity\Programme[]|\Cake\Collection\CollectionInterface $programmes
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Programme'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Contrats'), ['controller' => 'Contrats', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Contrat'), ['controller' => 'Contrats', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Universites'), ['controller' => 'Universites', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Universite'), ['controller' => 'Universites', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="programmes index large-9 medium-8 columns content">
-    <h3><?= __('Programmes') ?></h3>
+<div class="programmes index content">
+    <h3><?= __('Programmes') ?> <a href="programmes/add" class="btn btn-success btn-sm">Créer un programme</a></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('intitule') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('intitule', 'Intitulé') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($programmes as $programme): ?>
             <tr>
-                <td><?= $this->Number->format($programme->id) ?></td>
                 <td><?= h($programme->intitule) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $programme->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $programme->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $programme->id], ['confirm' => __('Are you sure you want to delete # {0}?', $programme->id)]) ?>
+                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $programme->id], ['class' => 'btn btn-outline-primary btn-sm']) ?>
+                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $programme->id], ['class' => 'btn btn-outline-primary btn-sm', 'confirm' => __('Voulez vous vraiment supprimer ce programme ?')]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -40,12 +27,12 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Premier')) ?>
+            <?= $this->Paginator->prev('< ' . __('Précédent')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('Suivant') . ' >') ?>
+            <?= $this->Paginator->last(__('Dernier') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} sur {{pages}}, actuellement {{current}} programmes sur {{count}} au total')]) ?></p>
     </div>
 </div>

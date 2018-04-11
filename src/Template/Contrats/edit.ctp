@@ -1,45 +1,26 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Contrat $contrat
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $contrat->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $contrat->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Contrats'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Diplomes'), ['controller' => 'Diplomes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Diplome'), ['controller' => 'Diplomes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Demande Mobilites'), ['controller' => 'DemandeMobilites', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Demande Mobilite'), ['controller' => 'DemandeMobilites', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Programmes'), ['controller' => 'Programmes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Programme'), ['controller' => 'Programmes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Demande Financieres'), ['controller' => 'DemandeFinancieres', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Demande Financiere'), ['controller' => 'DemandeFinancieres', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Cours'), ['controller' => 'Cours', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Cour'), ['controller' => 'Cours', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="contrats form large-9 medium-8 columns content">
+<?php $this->loadHelper('Form', ['templates' => 'forms/bootstrap_default_form']);?>
+<div class="contrats form content">
     <?= $this->Form->create($contrat) ?>
     <fieldset>
-        <legend><?= __('Edit Contrat') ?></legend>
+        <legend><?= __('Modifier un contrat') ?></legend>
         <?php
-            echo $this->Form->control('diplome_id', ['options' => $diplomes]);
-            echo $this->Form->control('demande_mobilite_id', ['options' => $demandeMobilites]);
-            echo $this->Form->control('programme_id', ['options' => $programmes, 'empty' => true]);
-            echo $this->Form->control('duree');
-            echo $this->Form->control('etat');
-            echo $this->Form->control('ordre');
-            echo $this->Form->control('cours._ids', ['options' => $cours]);
+        echo $this->Form->control('diplome_id', ['options' => $diplomes, 'label' => 'Diplôme', 'required' => true]);
+        echo $this->Form->control('demande_mobilite_id', ['options' => $demandeMobilites, 'label' => 'Demande de mobilité', 'required' => true]);
+        echo $this->Form->control('programme_id', ['options' => $programmes, 'empty' => true, 'label' => 'Programme']);
+        echo $this->Form->control('duree');
+        echo $this->Form->control('etat', ['type' => 'select', 'required' => true, 'options' => [
+            'En cours' => 'En cours', 'Validé' => 'Validé', 'Refusé' => 'Refusé'
+        ]]);
+        echo $this->Form->control('ordre');
+        echo $this->Form->control('cours._ids', ['options' => $cours, 'label' => 'Cours associés']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Modifier'), ['class' => 'btn btn-success']) ?>
     <?= $this->Form->end() ?>
+    <?= $this->Form->postLink(
+        __('Supprimer'),
+        ['action' => 'delete', $contrat->id],
+        ['confirm' => __('Êtes vous sûr de vouloir supprimer ce contrat ?'), 'class' => 'btn btn-danger']
+    )
+    ?>
 </div>

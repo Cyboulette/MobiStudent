@@ -29,22 +29,6 @@ class ContratsController extends AppController
     }
 
     /**
-     * View method
-     *
-     * @param string|null $id Contrat id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $contrat = $this->Contrats->get($id, [
-            'contain' => ['Diplomes', 'DemandeMobilites', 'Programmes', 'Cours', 'DemandeFinancieres']
-        ]);
-
-        $this->set('contrat', $contrat);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
@@ -55,11 +39,11 @@ class ContratsController extends AppController
         if ($this->request->is('post')) {
             $contrat = $this->Contrats->patchEntity($contrat, $this->request->getData());
             if ($this->Contrats->save($contrat)) {
-                $this->Flash->success(__('The contrat has been saved.'));
+                $this->Flash->success(__('Le contrat a bien été sauvegardé.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The contrat could not be saved. Please, try again.'));
+            $this->Flash->error(__('Impossible de sauvegarder le contrat, réessayez.'));
         }
         $diplomes = $this->Contrats->Diplomes->find('list', ['limit' => 200]);
         $demandeMobilites = $this->Contrats->DemandeMobilites->find('list', ['limit' => 200]);
@@ -83,11 +67,11 @@ class ContratsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $contrat = $this->Contrats->patchEntity($contrat, $this->request->getData());
             if ($this->Contrats->save($contrat)) {
-                $this->Flash->success(__('The contrat has been saved.'));
+                $this->Flash->success(__('Le contrat a bien été modifié.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The contrat could not be saved. Please, try again.'));
+            $this->Flash->error(__('Impossible de supprimer le contrat, réessayez.'));
         }
         $diplomes = $this->Contrats->Diplomes->find('list', ['limit' => 200]);
         $demandeMobilites = $this->Contrats->DemandeMobilites->find('list', ['limit' => 200]);
@@ -108,9 +92,9 @@ class ContratsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $contrat = $this->Contrats->get($id);
         if ($this->Contrats->delete($contrat)) {
-            $this->Flash->success(__('The contrat has been deleted.'));
+            $this->Flash->success(__('Le contrat a bien été supprimé.'));
         } else {
-            $this->Flash->error(__('The contrat could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Impossible de supprimer le contrat, réessayez.'));
         }
 
         return $this->redirect(['action' => 'index']);

@@ -1,33 +1,16 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Cour $cour
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Cours'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Contrats'), ['controller' => 'Contrats', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Contrat'), ['controller' => 'Contrats', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Cours'), ['controller' => 'Cours', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Cour'), ['controller' => 'Cours', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Diplomes'), ['controller' => 'Diplomes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Diplome'), ['controller' => 'Diplomes', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="cours form large-9 medium-8 columns content">
+<?php $this->loadHelper('Form', ['templates' => 'forms/bootstrap_default_form']);?>
+<div class="cours form content">
     <?= $this->Form->create($cour) ?>
     <fieldset>
-        <legend><?= __('Add Cour') ?></legend>
+        <legend><?= __('Créer un cours') ?></legend>
         <?php
-            echo $this->Form->control('libelle');
-            echo $this->Form->control('nb_ects');
-            echo $this->Form->control('contrats._ids', ['options' => $contrats]);
-            echo $this->Form->control('cours._ids', ['options' => $cours]);
-            echo $this->Form->control('diplomes._ids', ['options' => $diplomes]);
+            echo $this->Form->control('libelle', ['required' => true, 'label' => 'Libellé']);
+            echo $this->Form->control('nb_ects', ['required' => true]);
+            echo $this->Form->control('contrats._ids', ['options' => $contrats, 'label' => 'Contrats associés']);
+            echo $this->Form->control('cours._ids', ['options' => $cours, 'label' => 'Cours compatibles']);
+            echo $this->Form->control('diplomes._ids', ['options' => $diplomes, 'label' => 'Diplômes liés', 'required' => true]);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Créer'), ['class' => 'btn btn-success']) ?>
     <?= $this->Form->end() ?>
 </div>

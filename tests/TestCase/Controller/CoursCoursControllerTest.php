@@ -19,14 +19,15 @@ class CoursCoursControllerTest extends IntegrationTestCase
         'app.cours_cours',
         'app.cours',
         'app.contrats',
-        'app.cours_contrats',
         'app.diplomes',
         'app.universites',
         'app.programmes',
         'app.universites_programmes',
         'app.demande_mobilites',
         'app.etudiants',
-        'app.cours_diplomes'
+        'app.cours_diplomes',
+        'app.demande_financieres',
+        'app.cours_contrats'
     ];
 
     /**

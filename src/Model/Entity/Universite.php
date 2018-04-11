@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 /**
  * Universite Entity
@@ -35,4 +36,25 @@ class Universite extends Entity
         'diplomes' => true,
         'programmes' => true
     ];
+
+    public function getContrats($id) {
+        $contrats = TableRegistry::get('contrats');
+
+        $query = $contrats
+            ->find()
+            ->from('contrats')
+            ->join(['d' => [
+                'table' => 'diplomes',
+                'type' => 'INNER',
+                'conditions' => 'contrats.diplome_id = d.id'
+            ], 'u' => [
+                'table' => 'universites',
+                'type' => 'INNER',
+                'conditions' => 'u.id = '.$id
+            ]])
+            ->contain(['Diplomes', 'DemandeMobilites', 'Programmes'])
+            ->all();
+
+        return $query;
+    }
 }

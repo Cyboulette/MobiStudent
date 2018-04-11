@@ -12,7 +12,6 @@ use App\Controller\AppController;
  */
 class DiplomesController extends AppController
 {
-
     /**
      * Index method
      *
@@ -29,22 +28,6 @@ class DiplomesController extends AppController
     }
 
     /**
-     * View method
-     *
-     * @param string|null $id Diplome id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $diplome = $this->Diplomes->get($id, [
-            'contain' => ['Universites', 'Cours', 'Contrats', 'DemandeMobilites', 'Etudiants']
-        ]);
-
-        $this->set('diplome', $diplome);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
@@ -55,11 +38,11 @@ class DiplomesController extends AppController
         if ($this->request->is('post')) {
             $diplome = $this->Diplomes->patchEntity($diplome, $this->request->getData());
             if ($this->Diplomes->save($diplome)) {
-                $this->Flash->success(__('The diplome has been saved.'));
+                $this->Flash->success(__('Le diplôme a bien été sauvergardé.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The diplome could not be saved. Please, try again.'));
+            $this->Flash->error(__('Impossible de sauvegarder le diplôme, réessayez.'));
         }
         $universites = $this->Diplomes->Universites->find('list', ['limit' => 200]);
         $cours = $this->Diplomes->Cours->find('list', ['limit' => 200]);
@@ -81,11 +64,11 @@ class DiplomesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $diplome = $this->Diplomes->patchEntity($diplome, $this->request->getData());
             if ($this->Diplomes->save($diplome)) {
-                $this->Flash->success(__('The diplome has been saved.'));
+                $this->Flash->success(__('Le diplôme a bien été modifié.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The diplome could not be saved. Please, try again.'));
+            $this->Flash->error(__('Impossible de modifier le diplôme, réessayez.'));
         }
         $universites = $this->Diplomes->Universites->find('list', ['limit' => 200]);
         $cours = $this->Diplomes->Cours->find('list', ['limit' => 200]);
@@ -104,9 +87,9 @@ class DiplomesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $diplome = $this->Diplomes->get($id);
         if ($this->Diplomes->delete($diplome)) {
-            $this->Flash->success(__('The diplome has been deleted.'));
+            $this->Flash->success(__('Le diplôme a bien été supprimé.'));
         } else {
-            $this->Flash->error(__('The diplome could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Impossible de supprimer le diplôme, réessayez.'));
         }
 
         return $this->redirect(['action' => 'index']);

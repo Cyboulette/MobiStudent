@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 /**
  * Cour Entity
@@ -33,4 +34,20 @@ class Cour extends Entity
         'cours' => true,
         'diplomes' => true
     ];
+
+    public function findCours($id) {
+        $cours = TableRegistry::get('cours');
+
+        $query = $cours
+            ->find()
+            ->from('cours')
+            ->join(['c' => [
+                'table' => 'cours_cours',
+                'type' => 'INNER',
+                'conditions' => 'c.cour_id = '.$id
+            ]])
+            ->where('c.linked_cour_id = cours.id')->all();
+
+        return $query;
+    }
 }

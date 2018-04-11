@@ -26,22 +26,6 @@ class CoursController extends AppController
     }
 
     /**
-     * View method
-     *
-     * @param string|null $id Cour id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $cour = $this->Cours->get($id, [
-            'contain' => ['Contrats', 'Cours', 'Diplomes']
-        ]);
-
-        $this->set('cour', $cour);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
@@ -52,11 +36,11 @@ class CoursController extends AppController
         if ($this->request->is('post')) {
             $cour = $this->Cours->patchEntity($cour, $this->request->getData());
             if ($this->Cours->save($cour)) {
-                $this->Flash->success(__('The cour has been saved.'));
+                $this->Flash->success(__('Le cours a bien été sauvegardé.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cour could not be saved. Please, try again.'));
+            $this->Flash->error(__('Impossible de sauvegarder le cours, réessayez.'));
         }
         $contrats = $this->Cours->Contrats->find('list', ['limit' => 200]);
         $cours = $this->Cours->Cours->find('list', ['limit' => 200]);
@@ -74,16 +58,18 @@ class CoursController extends AppController
     public function edit($id = null)
     {
         $cour = $this->Cours->get($id, [
-            'contain' => ['Contrats', 'Cours', 'Diplomes']
+            'contain' => ['Contrats', 'Diplomes']
         ]);
+        $cour->cours = $cour->findCours($id);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cour = $this->Cours->patchEntity($cour, $this->request->getData());
             if ($this->Cours->save($cour)) {
-                $this->Flash->success(__('The cour has been saved.'));
+                $this->Flash->success(__('Le cours a bien été modifié.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cour could not be saved. Please, try again.'));
+            $this->Flash->error(__('Impossible de modifier le cours, réessayez.'));
         }
         $contrats = $this->Cours->Contrats->find('list', ['limit' => 200]);
         $cours = $this->Cours->Cours->find('list', ['limit' => 200]);
@@ -103,9 +89,9 @@ class CoursController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $cour = $this->Cours->get($id);
         if ($this->Cours->delete($cour)) {
-            $this->Flash->success(__('The cour has been deleted.'));
+            $this->Flash->success(__('Le cours a bien été supprimé.'));
         } else {
-            $this->Flash->error(__('The cour could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Impossible de supprimer le cours, réessayez.'));
         }
 
         return $this->redirect(['action' => 'index']);

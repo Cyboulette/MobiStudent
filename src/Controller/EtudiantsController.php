@@ -29,22 +29,6 @@ class EtudiantsController extends AppController
     }
 
     /**
-     * View method
-     *
-     * @param string|null $id Etudiant id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $etudiant = $this->Etudiants->get($id, [
-            'contain' => ['Diplomes', 'DemandeMobilites']
-        ]);
-
-        $this->set('etudiant', $etudiant);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
@@ -55,11 +39,11 @@ class EtudiantsController extends AppController
         if ($this->request->is('post')) {
             $etudiant = $this->Etudiants->patchEntity($etudiant, $this->request->getData());
             if ($this->Etudiants->save($etudiant)) {
-                $this->Flash->success(__('The etudiant has been saved.'));
+                $this->Flash->success(__('Étudiant sauvegardé avec succès.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The etudiant could not be saved. Please, try again.'));
+            $this->Flash->error(__('Impossible de sauvegarder l\'étudiant, réessayez.'));
         }
         $diplomes = $this->Etudiants->Diplomes->find('list', ['limit' => 200]);
         $this->set(compact('etudiant', 'diplomes'));
@@ -80,11 +64,11 @@ class EtudiantsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $etudiant = $this->Etudiants->patchEntity($etudiant, $this->request->getData());
             if ($this->Etudiants->save($etudiant)) {
-                $this->Flash->success(__('The etudiant has been saved.'));
+                $this->Flash->success(__('Étudiant modifié avec succès.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The etudiant could not be saved. Please, try again.'));
+            $this->Flash->error(__('Impossible de modifier l\'étudiant, réessayez.'));
         }
         $diplomes = $this->Etudiants->Diplomes->find('list', ['limit' => 200]);
         $this->set(compact('etudiant', 'diplomes'));
@@ -102,9 +86,9 @@ class EtudiantsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $etudiant = $this->Etudiants->get($id);
         if ($this->Etudiants->delete($etudiant)) {
-            $this->Flash->success(__('The etudiant has been deleted.'));
+            $this->Flash->success(__('Étudiant supprimé avec succès.'));
         } else {
-            $this->Flash->error(__('The etudiant could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Impossible de supprimer l\'étudiant, réessayez.'));
         }
 
         return $this->redirect(['action' => 'index']);

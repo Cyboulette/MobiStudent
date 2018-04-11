@@ -4,30 +4,13 @@
  * @var \App\Model\Entity\Diplome[]|\Cake\Collection\CollectionInterface $diplomes
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Diplome'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Universites'), ['controller' => 'Universites', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Universite'), ['controller' => 'Universites', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Contrats'), ['controller' => 'Contrats', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Contrat'), ['controller' => 'Contrats', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Demande Mobilites'), ['controller' => 'DemandeMobilites', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Demande Mobilite'), ['controller' => 'DemandeMobilites', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Etudiants'), ['controller' => 'Etudiants', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Etudiant'), ['controller' => 'Etudiants', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Cours'), ['controller' => 'Cours', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Cour'), ['controller' => 'Cours', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="diplomes index large-9 medium-8 columns content">
-    <h3><?= __('Diplomes') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<div class="diplomes index content">
+    <h3><?= __('Liste des diplômes') ?> <a href="diplomes/add" class="btn btn-success btn-sm">Créer un diplôme</a></h3>
+    <table cellpadding="0" cellspacing="0" class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('universite_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('intitule') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('universite_id', ['label' => 'Université']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('intitule', ['label' => 'Intitulé']) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('adresse_web') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('niveau') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -36,15 +19,13 @@
         <tbody>
             <?php foreach ($diplomes as $diplome): ?>
             <tr>
-                <td><?= $this->Number->format($diplome->id) ?></td>
-                <td><?= $diplome->has('universite') ? $this->Html->link($diplome->universite->id, ['controller' => 'Universites', 'action' => 'view', $diplome->universite->id]) : '' ?></td>
+                <td><?= $diplome->has('universite') ? $this->Html->link($diplome->universite->nom, ['controller' => 'Universites', 'action' => 'view', $diplome->universite->id]) : '' ?></td>
                 <td><?= h($diplome->intitule) ?></td>
                 <td><?= h($diplome->adresse_web) ?></td>
                 <td><?= $this->Number->format($diplome->niveau) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $diplome->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $diplome->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $diplome->id], ['confirm' => __('Are you sure you want to delete # {0}?', $diplome->id)]) ?>
+                    <?= $this->Html->link(__('Modifier'), ['action' => 'edit', $diplome->id], ['class' => 'btn btn-outline-primary btn-sm']) ?>
+                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $diplome->id], ['class' => 'btn btn-outline-primary btn-sm', 'confirm' => __('Voulez vous vraiment supprimer ce diplôme ?')]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -52,12 +33,12 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Premier')) ?>
+            <?= $this->Paginator->prev('< ' . __('Précédent')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('Suivant') . ' >') ?>
+            <?= $this->Paginator->last(__('Dernier') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} sur {{pages}}, actuellement {{current}} diplômes sur {{count}} au total')]) ?></p>
     </div>
 </div>
