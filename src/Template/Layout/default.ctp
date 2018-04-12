@@ -39,7 +39,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
     <div class="menu-wrapper">
         <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
-            <a class="navbar-brand" href="index.jsp">MobiStudent FRONT</a>
+            <?=$this->Html->link('MobiStudent FRONT', '/diplomes', ['class' => 'navbar-brand'])?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
